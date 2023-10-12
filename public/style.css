@@ -1,0 +1,533 @@
+/*css variables*/
+:root {
+    --body-bg-color: #ffff;
+    --black: #11597c;
+    --light-green: green;
+    --light-grey: #eeafc8;
+    --text-color: #ffffff;
+    /* biru: #0093DD
+ijo: #68B92E
+oren: #EB891B
+ */
+    --biru-logo: #0093dd;
+    --hijau-logo: #68b92e;
+    --oren-logo: #eb891b;
+}
+
+/*reset*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+/*body*/
+body {
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+    width: 100vw;
+    height: auto;
+    font-family: "Poppins", sans-serif;
+    position: relative;
+}
+
+/*navbar*/
+.navbar {
+    z-index: 2;
+    width: 80px;
+    max-width: 4rem;
+    background-color: var(--black);
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.navbar .navbar-container {
+    padding: 1rem;
+}
+
+/*logo*/
+.navbar .navbar-container .navbar-logo-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.7rem;
+    /* padding-left: 1rem; */
+}
+
+.navbar .navbar-container .navbar-logo-div .navbar-toggler {
+    transition: 0.2s ease-in-out;
+    color: #dee2e6;
+}
+
+.navbar .navbar-container .navbar-logo-div .navbar-toggler i {
+    font-size: 1rem;
+}
+
+.navbar .navbar-container .navbar-logo-div .navbar-toggler:hover {
+    color: var(--light-grey);
+}
+
+.navbar .navbar-container .navbar-logo-div .navbar-logo-link {
+    display: none;
+}
+
+.navbar .navbar-container .identity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .navbar .navbar-container .identity img{
+  width: 30%;
+} */
+.navbar .navbar-container .identity h3 {
+    width: 100%;
+    margin-left: 10px;
+}
+
+/*search*/
+.navbar .navbar-search {
+    width: 100%;
+    background-image: url("../img/search.svg");
+    background-repeat: no-repeat;
+    background-color: var(--light-green);
+    background-position: center;
+
+    margin: 0 auto;
+    /* background-position: 1rem 0.7rem; */
+    padding: 1rem;
+    /* padding-left: 3rem; */
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+}
+
+#icon-search {
+    position: absolute;
+    color: var(--black);
+    font-size: 1.2rem;
+    top: 4.5rem;
+    left: 1.4rem;
+}
+
+.navbar .navbar-search::placeholder {
+    visibility: hidden;
+    opacity: 0;
+}
+/* fungsi */
+.fungsi {
+    background-color: gray;
+    width: 100%;
+    color: var(--text-color);
+    padding: 10px 7px;
+    border-radius: 5px;
+}
+
+.fungsi.sosial {
+    background-color: var(--oren-logo);
+}
+
+.fungsi.ekonomi {
+    background-color: var(--hijau-logo);
+}
+
+.fungsi .fungsi-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.fungsi .fungsi-item h4 {
+    margin-left: 10px;
+    display: none;
+}
+
+/*menu list*/
+.navbar .menu-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.navbar .menu-list .active {
+    color: var(--light-grey);
+}
+
+.navbar .menu-list .menu-item {
+    width: 100%;
+}
+
+.navbar .menu-list .menu-item .menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    transition: 0.2s ease-in-out;
+    font-weight: 500;
+}
+
+.navbar .menu-list .menu-item .menu-link .menu-link-text {
+    display: none;
+    color: inherit;
+}
+
+.navbar .menu-list .menu-item .menu-link:hover,
+.navbar .menu-list .menu-item .menu-link:hover {
+    color: var(--light-grey);
+}
+
+.menu-wide {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.menu-link {
+    display: none;
+}
+
+.menu-wide .fa-chevron-right {
+    display: flex;
+    margin-left: 15px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.menu-wide .fa-angle-down {
+    display: none;
+    margin-left: 15px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.menu-wide .fa-chevron-right.gas {
+    display: none;
+}
+
+.menu-wide .fa-angle-down.active {
+    display: flex;
+}
+
+/* sub menu list */
+.navbar .menu-list .menu-item .submenu-list {
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 35px;
+}
+
+.navbar
+    .menu-list
+    .menu-item
+    .submenu-list
+    .submenu-item
+    .submenu-link
+    .submenu-link-text {
+    margin-left: 5px;
+}
+
+.navbar .menu-list .menu-item .submenu-list.active {
+    display: flex;
+}
+/*user information div*/
+.navbar .user-container {
+    background-color: var(--light-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+}
+
+.navbar .user-container .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    display: none;
+}
+
+.navbar .user-container .user-info i {
+    font-size: 1.2rem;
+}
+
+.navbar .user-container .user-info .user-details .user-name {
+    font-size: 1.1rem;
+    font-weight: light;
+}
+
+.navbar .user-container .user-info .user-details .user-occupation {
+    font-size: 0.9rem;
+    font-weight: lighter;
+}
+
+/*navbar.active*/
+/*navbar.active navbar*/
+.navbar.active {
+    width: 350px;
+    max-width: 20%;
+    overflow: scroll;
+}
+
+.navbar.active .menu-wide {
+    justify-content: start;
+}
+/* .navbar.active .fa-chevron-right.gas{
+    display: none;
+} */
+
+/*navbar.active logo*/
+.navbar.active .navbar-container .navbar-logo-div {
+    justify-content: space-between;
+    padding-left: 1rem;
+}
+
+.navbar.active .navbar-container .navbar-logo-div .navbar-logo-link {
+    display: block;
+}
+
+/*navbar.active search input*/
+.navbar.active .navbar-search {
+    background-position: 1rem 0.7rem;
+    padding: 1rem;
+    padding-left: 3rem;
+}
+
+.navbar.active #icon-search {
+    top: 5.1rem;
+    left: 1.6rem;
+}
+
+.navbar.active .navbar-search::placeholder {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*navbar.active menu*/
+.navbar.active .menu-list {
+    padding-left: 1rem;
+}
+
+.navbar.active .menu-list .menu-item .menu-link {
+    justify-content: flex-start;
+}
+
+.navbar.active .menu-list .menu-item .menu-link .menu-link-text {
+    display: inline;
+}
+
+.navbar.active .fungsi-item h4 {
+    display: block;
+}
+
+/*navbar.active user container*/
+.navbar.active .user-container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar.active .user-container .user-info {
+    display: flex;
+}
+
+.navbar.active .menu-item {
+    margin-left: 35px;
+}
+/*dashboard*/
+.dashboard {
+    width: auto;
+    height: auto;
+    margin-left: 5rem;
+}
+
+.isi_admin {
+    color: #000;
+    padding: 15px;
+    max-width: 95%;
+    margin-left: 15px;
+}
+
+.tableau-container {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* padding-left: 100px; */
+}
+.filter-tahun {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-tahun p {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#tahun-filter {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#tahun-filter option[disabled] {
+    color: #888;
+}
+
+.download-btn {
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Set the background color */
+    color: #fff; /* Set the text color */
+    text-decoration: none;
+    border-radius: 5px; /* Optional: Adds rounded corners */
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+    /* Optional: Hover styles */
+    &:hover {
+        background-color: #0056b3; /* Change the background color on hover */
+    }
+}
+
+.tabel {
+    color: #000;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+
+.tabel th,
+.tabel td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    /* text-align: center; */
+}
+.dataTables_length {
+    margin-bottom: 15px;
+}
+
+.tabel thead th {
+    /* text-align: center; */
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    margin-top: auto;
+}
+
+.navbar.active + .dashboard {
+    margin-left: 22%;
+}
+.section-heading,
+.small-heading {
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    background: var(--body-bg-color);
+    color: #000;
+    text-transform: uppercase;
+}
+.section-heading::before,
+.small-heading::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 0;
+    /* box-shadow: inset 0px 0px 30px rgba(255,255,255,0.6); */
+}
+.small-heading {
+    display: inline-block;
+}
+.wrapper {
+    text-align: center;
+}
+.wrapper::before {
+    content: "";
+    position: absolute;
+
+    top: 90%;
+    left: 30px;
+    right: 30px;
+}
+/*media queries*/
+@media only screen and (max-width: 870px) {
+    .navbar.active {
+        max-width: 27%;
+    }
+
+    .navbar.active + .dashboard {
+        margin-left: 30%;
+    }
+}
+
+@media only screen and (max-width: 670px) {
+    .navbar.active {
+        min-width: 100%;
+    }
+
+    .navbar .navbar-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .navbar .navbar-search {
+        position: absolute;
+        border-radius: 0;
+        left: 0;
+    }
+
+    .navbar .menu-item {
+        position: relative;
+        /* top: rem; */
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .dashboard .title {
+        font-size: 1.7rem;
+    }
+}
