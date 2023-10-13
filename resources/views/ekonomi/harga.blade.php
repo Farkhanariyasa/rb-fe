@@ -4,6 +4,13 @@
     <h1 class="judul">{{ $data['title'] }}</h1>
     <div class="aksi">
         <a href="{{ route('export.excel_harga')}}" class="download-btn">Download</a>
+        @if (session('user'))
+        <form action="{{ route('import.excel_harga') }}" method="POST" enctype="multipart/form-data" class="import-form">
+            @csrf
+            <input type="file" name="file">
+            <button type="submit" class="import-btn">Import Update</button>
+        </form>
+        @endif
     </div>
 
     <table class="tabel" id="myTable">
@@ -11,8 +18,8 @@
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Tahun</th>
-                <th scope="col">Produksi Padi (GKG)</th>
-                <th scope="col">Luas Panen Padi (Ha)</th>
+                <th scope="col">Produksi Padi (Ton GKG)</th>
+                <th scope="col">Luas Panen Padi (Hektare)</th>
 
             </tr>
         </thead>

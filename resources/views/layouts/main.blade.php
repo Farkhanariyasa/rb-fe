@@ -55,10 +55,17 @@
                     </div>
                 </div>
                 <li class="menu-item <?php echo ($data['active'] == 'home' ? 'active' : ''); ?>">
-                    <a class="menu-link" href="/admin/kependudukan">
+                    @if (!session('user'))
+                    <a class="menu-link" href="{{ route('login') }}">
                         <i class="fas fa-solid fa-table"></i>
                         <span class="menu-link-text">Masuk Ke Admin</span>
                     </a>
+                    @else
+                    <div class="menu-link">
+                        <i class="fas fa-solid fa-table"></i>
+                        <span class="menu-link-text">Selamat datang {{ session('user')->name }}</span>
+                    </div>
+                    @endif
                 </li>
                 <div class="fungsi sosial">
                     <div class="fungsi-item">
@@ -77,7 +84,7 @@
                     </div>
                     <ul class="submenu-list kependudukan">
                         <li class="submenu-item">
-                            <a class="submenu-link" href="/dashboard-ketenagakerjaan">
+                            <a class="submenu-link" href="/dashboard-kependudukan">
                                 <i class="fa-solid fa-chart-line"></i>
                                 <span class="submenu-link-text">Dashboard</span>
                             </a>
@@ -285,16 +292,25 @@
         <!--div user info-->
         <div class="user-container">
             <div class="user-info">
-                <i class="fas fa-solid fa-user-secret"></i>
+                <i class="fas fa-solid fa-user"></i>
                 <div class="user-details">
-                    <h3 class="user-name">Eleanor Pena</h3>
-                    <p class="user-occupation">Veterinary</p>
+                    @if (session('user'))
+                    <h3 class="user-name">{{ session('user')->name }}</h3>
+                    @else
+                    <h3 class="user-name">Guest</h3>
+                    @endif
                 </div>
             </div>
-            <a class="logout-btn" href="#">
-                <i class="fas fa-sharp fa-regular fa-arrow-right-from-bracket"></i>
-            </a>
+            @if (session('user'))
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" class="logout-btn">
+                    <i class="fas fa-sharp fa-regular fa-arrow-right-from-bracket"> Logout</i>
+                </button>
+            </form>
+            @endif
         </div>
+
     </nav>
 
     <!--dashboard-->

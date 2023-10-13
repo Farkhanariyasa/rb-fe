@@ -1,25 +1,33 @@
 @extends('./layouts/main')
 @section ('content')
 <div class="isi_admin">
-    
+
     <h1 class="judul">IPM</h1>
     <div class="aksi">
         <a href="{{ route('export.excel_ipm')}}" class="download-btn">Download</a>
+        @if (session('user'))
+        <form action="{{ route('import.excel_harga') }}" method="POST" enctype="multipart/form-data" class="import-form">
+            @csrf
+            <input type="file" name="file">
+            <button type="submit" class="import-btn">Import Update</button>
+        </form>
+        @endif
     </div>
 
     <table class="tabel" id="myTable">
+
         <thead>
             <tr>
                 <!-- <th scope="col">#</th> -->
                 <!-- Tahun	pdrb_adhb	pdrb_adhk	pdrb_perkapita	laju_pertumbuhan_ekonomi -->
                 <th scope="col">No</th>
                 <th scope="col">Tahun</th>
-                <th scope="col">Indeks Pembangunan Manusia</th>
-                <th scope="col">Rata-rata Lama Sekolah</th>
-                <th scope="col">Angka Harapan Lama Sekolah</th>
-                <th scope="col">Angka Harapan Hidup</th>
-                <th scope="col">Pengeluaran Perkapita</th>
-                <th scope="col">Garis Kemiskinan</th>
+                <th scope="col">Indeks Pembangunan Manusia (Poin)</th>
+                <th scope="col">Rata-rata Lama Sekolah (Tahun)</th>
+                <th scope="col">Angka Harapan Lama Sekolah (Tahun)</th>
+                <th scope="col">Angka Harapan Hidup (Tahun)</th>
+                <th scope="col">Pengeluaran Riil Perkapita (Juta Rupiah per Tahun)</th>
+                <th scope="col">Garis Kemiskinan (Rupiah per Kapita per Bulan)</th>
             </tr>
         </thead>
         <tbody>

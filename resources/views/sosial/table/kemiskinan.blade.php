@@ -5,6 +5,13 @@
     <h1 class="judul">Kemiskinan</h1>
     <div class="aksi">
         <a href="{{ route('export.excel_kemiskinan')}}" class="download-btn">Download</a>
+        @if (session('user'))
+        <form action="{{ route('import.excel_harga') }}" method="POST" enctype="multipart/form-data" class="import-form">
+            @csrf
+            <input type="file" name="file">
+            <button type="submit" class="import-btn">Import Update</button>
+        </form>
+        @endif
     </div>
 
     <table class="tabel" id="myTable">
@@ -14,10 +21,10 @@
                 <!-- Tahun	pdrb_adhb	pdrb_adhk	pdrb_perkapita	laju_pertumbuhan_ekonomi -->
                 <th scope="col">No</th>
                 <th scope="col">Tahun</th>
-                <th scope="col">Jumlah Miskin</th>
-                <th scope="col">Persentase Miskin</th>
-                <th scope="col">P1</th>
-                <th scope="col">P2</th>
+                <th scope="col">Jumlah Penduduk Miskin (Ribu Jiwa)</th>
+                <th scope="col">Persentase Penduduk Miskin (%)</th>
+                <th scope="col">P1 Kedalaman Kemiskinan (Poin)</th>
+                <th scope="col">P2 Keparahan Kemiskinan (Poin)</th>
             </tr>
         </thead>
         <tbody>

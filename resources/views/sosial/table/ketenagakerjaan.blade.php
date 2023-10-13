@@ -5,6 +5,13 @@
     <h1 class="judul">Ketenagakerjaan</h1>
     <div class="aksi">
         <a href="{{ route('export.excel_ketenagakerjaan')}}" class="download-btn">Download</a>
+        @if (session('user'))
+        <form action="{{ route('import.excel_harga') }}" method="POST" enctype="multipart/form-data" class="import-form">
+            @csrf
+            <input type="file" name="file">
+            <button type="submit" class="import-btn">Import Update</button>
+        </form>
+        @endif
     </div>
 
     <table class="tabel" id="myTable">
@@ -14,16 +21,16 @@
                 <!-- Tahun	pdrb_adhb	pdrb_adhk	pdrb_perkapita	laju_pertumbuhan_ekonomi -->
                 <th scope="col">No</th>
                 <th scope="col">Tahun</th>
-                <th scope="col">Usia Kerja</th>
-                <th scope="col">Angkatan Kerja</th>
-                <th scope="col">Bukan Angkatan Kerja</th>
-                <th scope="col">Bekerja</th>
-                <th scope="col">Pengangguran</th>
-                <th scope="col">Sekolah</th>
-                <th scope="col">Mengurus Rumah Tangga</th>
-                <th scope="col">Lainnya</th>
-                <th scope="col">Tingkat Partisipasi Angkatan Kerja</th>
-                <th scope="col">Tingkat Pengangguran Terbuka</th>
+                <th scope="col">Jumlah Usia Kerja (Jiwa)</th>
+                <th scope="col">Jumlah Angkatan Kerja  (Jiwa)</th>
+                <th scope="col">Jumlah Bukan Angkatan Kerja  (Jiwa)</th>
+                <th scope="col">Jumlah Bekerja  (Jiwa)</th>
+                <th scope="col">Jumlah Pengangguran  (Jiwa)</th>
+                <th scope="col">Jumlah Sekolah  (Jiwa)</th>
+                <th scope="col">Jumlah Mengurus Rumah Tangga  (Jiwa)</th>
+                <th scope="col">Jumlah Lainnya  (Jiwa)</th>
+                <th scope="col">Tingkat Partisipasi Angkatan Kerja (%)</th>
+                <th scope="col">Tingkat Pengangguran Terbuka (%)</th>
             </tr>
         </thead>
         <tbody>
