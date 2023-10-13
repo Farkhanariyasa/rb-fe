@@ -383,8 +383,54 @@ body {
     margin-left: 15px;
 }
 
+.download-btn,
+.import-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.aksi {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.logout-btn{
+    color: #fff;
+}
+
+.download-btn {
+    background-color: #28a745; /* Green color for download button */
+}
+
+.import-btn {
+    background-color: #05a02c; /* Blue color for import button */
+}
+
+.download-btn:hover,
+.import-btn:hover {
+    background-color: #218838; /* Darker shade of green/blue on hover */
+}
+
+.import-form {
+    margin-top: 10px;
+}
+
+.import-form input[type="file"] {
+    margin-right: 10px;
+}
+
 .tableau-container {
-    background-color: red;
+    /* background-color: red; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -436,7 +482,6 @@ body {
     background-color: transparent;
     border-collapse: collapse;
 }
-
 
 .tabel th,
 .tabel td {

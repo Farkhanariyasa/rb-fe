@@ -112,6 +112,23 @@ Route::get('/dashboard-kemiskinan', function () {
     return view('sosial/kemiskinan', ['data' => $data]);
 });
 
+// dashboard penerimaan
+Route::get('/dashboard-penerimaan', function () {
+    $data = [
+        "title" => "PENERIMAAN",
+        "active" => "penerimaan"
+    ];
+    return view('sosial/penerimaan', ['data' => $data]);
+});
+
+// dashboardproduksi
+Route::get('/dashboard-produksi', function () {
+    $data = [
+        "title" => "PRODUKSI",
+        "active" => "produksi"
+    ];
+    return view('sosial/produksi', ['data' => $data]);
+});
 
 Route::get('/tabulasi-pdrb', [PdrbController::class, 'index_tabel']);
 Route::get('/tabulasi-produksi', [HargaController::class, 'index_tabel']);
@@ -122,3 +139,11 @@ Route::get('/tabulasi-kependudukan', [KependudukanController::class, 'index_tabe
 Route::get('/tabulasi-ketenagakerjaan', [KetenagakerjaanController::class, 'index_tabel']);
 Route::get('/tabulasi-ketimpangan', [KetimpanganController::class, 'index_tabel']);
 
+// Show the login form
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+// Handle the login form submission
+Route::post('/login', [LoginController::class, 'login']);
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
