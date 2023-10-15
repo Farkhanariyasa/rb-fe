@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Harga extends Model
 {
     use HasFactory;
-    protected $table = 'harga';
+    protected $table = 'dataproduksi';
+    public $timestamps = false;
     // id	fungsi	indikator	time_lag	tahun	variabel	satuan	produksi_padi 	luas_panen_padi
     protected $fillable = [
         'id',

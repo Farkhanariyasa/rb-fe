@@ -52,12 +52,11 @@ class HargaController extends Controller
     {
         try {
             $file = $request->file('file');
-            $nama_file = rand() . $file->getClientOriginalName();
-            $file->move('harga', $nama_file);
-            // DB::table('harga')->truncate();
-            Excel::import(new HargaImport, public_path('/harga/' . $nama_file));
+            // $nama_file = rand() . $file->getClientOriginalName() ."inilah";
+            // $file->move('harga', $nama_file);
+            Excel::import(new HargaImport, $file);
             Alert::success('Success', 'Data imported successfully.');
-            return redirect('admin/harga');
+            return redirect()->back();
         } catch (\Exception $e) {
             Alert::error('Error', 'Failed to import data.');
             return redirect()->back();

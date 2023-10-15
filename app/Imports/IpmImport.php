@@ -9,33 +9,30 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 class IpmImport implements ToModel, WithStartRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
-        return new Ipm([
-            //id	fungsi	indikator	time_lag	tahun	variabel	satuan	IPM	RLS	AHS	RPJM_sekolah	AHH	pengeluaran_perkapita	garis_kemiskinan_tahun
+        $rows = [
             'id' => $row[0],
-            'fungsi' => $row[1],
-            'indikator' => $row[2],
-            'time_lag' => $row[3],
-            'tahun' => $row[4],
-            'variabel' => $row[5],
-            'satuan' => $row[6],
-            'IPM' => $row[7],
-            'RLS' => $row[8],
-            'AHS' => $row[9],
-            'RPJM_sekolah' => $row[10],
-            'AHH' => $row[11],
-            'pengeluaran_perkapita' => $row[12],
-            'garis_kemiskinan_tahun' => $row[13]
-        ]);
+            'tahun' => $row[1],
+            'ipm' => $row[2],
+            'rls' => $row[3],
+            'ahs' => $row[4],
+            'ahh' => $row[5],
+            'pengeluaran_perkapita' => $row[6],
+            'garis_kemiskinan_tahun' => $row[7],
+        ];
+        return new Ipm($rows);
     }
 
     public function startRow(): int
     {
-        return 2;
+        // get last id
+        $lastRecord = Ipm::orderBy('id', 'desc')->first();
+        return $lastRecord->id + 2;
+        // return 2;
     }
 }

@@ -8,17 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kemiskinan extends Model
 {
     use HasFactory;
-    protected $table = 'kemiskinan';
+    protected $table = 'datakemiskinan';
+    public $timestamps = false;
     protected $fillable = [
         'id',
-        'fungsi',
-        'indikator',
-        'time_lag',
         'tahun',
-        'variabel',
-        'satuan',
-        'hierarki1',
-        'hierarki2',
         'jumlah_miskin',
         'persentase_miskin',
         'p1',

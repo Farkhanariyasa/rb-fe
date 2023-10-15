@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ketimpangan extends Model
+class Sumberpenerimaan extends Model
 {
     use HasFactory;
-    protected $table = 'dataketimpangan';
+    protected $table = 'datasumberpenerimaan';
     public $timestamps = false;
     protected $fillable = [
         'id',
         'tahun',
-        'gini_ratio'
+        'sumber_penerimaan',
+        'penerimaan'
     ];
 }

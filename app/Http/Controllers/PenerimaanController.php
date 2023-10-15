@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Exports\ExportPenerimaan;
 use App\Imports\PenerimaanImport;
 use App\Exports\ExportSumberPenerimaan;
+use App\Imports\SumberpenerimaanImport;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class PenerimaanController extends Controller
 
     public function index()
     {
-        $penerimaan = DB::table($this->table)->paginate(10);
+        $penerimaan = DB::table($this->table)->get();
         $data = [
             "title" => "PENERIMAAN",
             "active" => "penerimaan"
@@ -51,27 +52,34 @@ class PenerimaanController extends Controller
 
     public function index_tabel()
     {
-        $penerimaan = DB::table('datapenerimaan')->paginate(10);
-        $sumber = DB::table('datasumberpenerimaan')->paginate(10);
+        $penerimaan = DB::table('datapenerimaan')->get();
+        $sumber = DB::table('datasumberpenerimaan')->get();
         $data = [
             "title" => "Penerimaan Daerah",
             "active" => "penerimaan"
         ];
-        return view('ekonomi.penerimaan', ['data' => $data, 'penerimaan' => $penerimaan , 'sumber' => $sumber]);
+        return view('ekonomi.penerimaan', ['data' => $data, 'penerimaan' => $penerimaan, 'sumber' => $sumber]);
     }
 
     public function import(Request $request)
     {
         try {
             $file = $request->file('file');
-            $nama_file = rand() . $file->getClientOriginalName();
-            $file->move('penerimaan', $nama_file);
-            // DB::table('penerimaan')->truncate();
-            Excel::import(new PenerimaanImport, public_path('/penerimaan/' . $nama_file));
-            Alert::success('Success', 'Data imported successfully.');
-            return redirect('admin/penerimaan');
+            Excel::import(new PenerimaanImport, $file);
+            return redirect()->back();
         } catch (\Exception $e) {
-            Alert::error('Error', 'Failed to import data.');
+            return redirect()->back();
+        }
+    }
+
+    // import_sumber
+    public function import_sumber(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            Excel::import(new SumberpenerimaanImport, $file);
+            return redirect()->back();
+        } catch (\Exception $e) {
             return redirect()->back();
         }
     }

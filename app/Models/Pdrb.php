@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pdrb extends Model
 {
     use HasFactory;
-    protected $table = 'pdrb';
+    protected $table = 'datapdrb';
+    public $timestamps = false;
     protected $fillable = [
         // tahun	pdrb_adhb	pdrb_adhk	pdrb_perkapita	laju_pertumbuhan_ekonomi
+        'id',
         'tahun',
         'pdrb_adhb',
         'pdrb_adhk',

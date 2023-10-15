@@ -52,15 +52,13 @@ class KependudukanController extends Controller
     {
         try {
             $file = $request->file('file');
-            $nama_file = rand() . $file->getClientOriginalName();
-            $file->move('kependudukan', $nama_file);
-            // DB::table('kependudukan')->truncate();
-            Excel::import(new KependudukanImport, public_path('/kependudukan/' . $nama_file));
-            Alert::success('Success', 'Data imported successfully.');
-            return redirect('admin/kependudukan');
-        } catch (\Exception $e) {
-            Alert::error('Error', 'Failed to import data.');
+            Excel::import(new KependudukanImport, $file);
+            // Alert::success('Success', 'Data imported successfully.');
             return redirect()->back();
+        } catch (\Exception $e) {
+            error_log("Pesan yang akan dicetak ke konsol");
+            alert()->success('Success', 'Data imported successfully.');
+            return redirect()->back()->with('error', 'Data gagal diimport');
         }
     }
 }

@@ -56,14 +56,9 @@ class KemiskinanController extends Controller
     {
         try {
             $file = $request->file('file');
-            $nama_file = rand() . $file->getClientOriginalName();
-            $file->move('kemiskinan', $nama_file);
-            // DB::table('kemiskinan')->truncate();
-            Excel::import(new KemiskinanImport, public_path('/kemiskinan/' . $nama_file));
-            Alert::success('Success', 'Data imported successfully.');
-            return redirect('admin/kemiskinan');
+            Excel::import(new KemiskinanImport, $file);
+            return redirect()->back();
         } catch (\Exception $e) {
-            Alert::error('Error', 'Failed to import data.');
             return redirect()->back();
         }
     }

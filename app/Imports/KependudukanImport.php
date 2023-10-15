@@ -16,27 +16,23 @@ class KependudukanImport implements ToModel, WithStartRow
     public function model(array $row)
     {
         return new Kependudukan([
-            // id	fungsi	indikator	time_lag	tahun	variabel	satuan	hierarki1	sensus_penduduk	penduduk 	penduduk_jenis_kelamin	persen_penduduk	sex_ratio	luas_wilayah	kepadatan_penduduk
-            'id' => $row[0],
-            'fungsi' => $row[1],
-            'indikator' => $row[2],
-            'time_lag' => $row[3],
-            'tahun' => $row[4],
-            'variabel' => $row[5],
-            'satuan' => $row[6],
-            'hierarki1' => $row[7],
-            'sensus_penduduk' => $row[8],
-            'penduduk' => $row[9],
-            'penduduk_jenis_kelamin' => $row[10],
-            'persen_penduduk' => $row[11],
-            'sex_ratio' => $row[12],
-            'luas_wilayah' => $row[13],
-            'kepadatan_penduduk' => $row[14]
+            'id' => $row[0], // Sesuaikan kolom id dengan Kependudukan
+            'tahun' => $row[1],
+            'penduduk' => $row[2], // Sesuaikan dengan indeks kolom yang sesuai di dalam array $row
+            'sex_ratio' => $row[3],
+            'luas_wilayah' => $row[4],
+            'kepadatan_penduduk' => $row[5],
+            'laki_laki' => $row[6],
+            'perempuan' => $row[7],
+            'persen_laki' => $row[8],
+            'persen_perempuan' => $row[9],
         ]);
+        
     }
 
     public function startRow(): int
     {
-        return 2;
+        $lastRecord = Kependudukan::orderBy('id', 'desc')->first();
+        return $lastRecord->id + 2;
     }
 }

@@ -37,7 +37,6 @@ class IpmController extends Controller
         try {
             return Excel::download(new ExportIpm(), 'ipm.xlsx');
         } catch (\Exception $e) {
-            Alert::error('Error', 'Failed to download template file.');
             return redirect()->back();
         } // Convert array to collection and then download
     }
@@ -46,14 +45,14 @@ class IpmController extends Controller
     {
         try {
             $file = $request->file('file');
-            $nama_file = rand() . $file->getClientOriginalName();
-            $file->move('ipm', $nama_file);
-            // DB::table('ipm')->truncate();
-            Excel::import(new IpmImport, public_path('/ipm/' . $nama_file));
-            Alert::success('Success', 'Data imported successfully.');
-            return redirect('admin/ipm');
+            // $nama_file = rand() . $file->getClientOriginalName();
+            // $file->move('dataipm', $nama_file);
+            // DB::table('dataipm')->truncate();
+            error_log("Pesan yang akan dicetak ke konsol");
+            Excel::import(new IpmImport,  $file);
+            return redirect()->back();
         } catch (\Exception $e) {
-            Alert::error('Error', 'Failed to import data.');
+            alert()->success('Success', 'Data imported successfully.');
             return redirect()->back();
         }
     }

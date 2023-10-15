@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Penerimaan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExportPenerimaan implements FromCollection
+class ExportPenerimaan implements FromCollection, WithHeadings
 {
     public function collection()
     {

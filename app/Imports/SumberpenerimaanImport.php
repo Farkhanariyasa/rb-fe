@@ -2,12 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Penerimaan;
+use App\Models\Sumberpenerimaan;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
 
-class PenerimaanImport implements ToModel, WithStartRow
+class SumberpenerimaanImport implements ToModel, WithStartRow
 {
     /**
      * @param array $row
@@ -16,25 +16,20 @@ class PenerimaanImport implements ToModel, WithStartRow
      */
     public function model(array $row)
     {
-        return new Penerimaan([
+        return new Sumberpenerimaan([
             //id	fungsi	indikator	time_lag	tahun	variabel	satuan	hierarki1	penerimaan_daerah	penyusun_penerimaan_daerah
 
             'id' => $row[0],
-            'fungsi' => $row[1],
-            'indikator' => $row[2],
-            'time_lag' => $row[3],
-            'tahun' => $row[4],
-            'variabel' => $row[5],
-            'satuan' => $row[6],
-            'hierarki1' => $row[7],
-            'penerimaan_daerah' => $row[8],
-            'penyusun_penerimaan_daerah' => $row[9]
+            'tahun' => $row[1],
+            'sumber_penerimaan' => $row[2],
+            'penerimaan' => $row[3],
 
         ]);
     }
 
     public function startRow(): int
     {
-        return 2;
+        $lastRecord = Sumberpenerimaan::orderBy('id', 'desc')->first();
+        return $lastRecord->id + 2;
     }
 }

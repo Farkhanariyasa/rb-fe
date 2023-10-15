@@ -49,14 +49,9 @@ class KetenagakerjaanController extends Controller
     {
         try {
             $file = $request->file('file');
-            $nama_file = rand() . $file->getClientOriginalName();
-            $file->move('ketenagakerjaan', $nama_file);
-            // DB::table('ketenagakerjaan')->truncate();
-            Excel::import(new KetenagakerjaanImport, public_path('/ketenagakerjaan/' . $nama_file));
-            Alert::success('Success', 'Data imported successfully.');
-            return redirect('admin/ketenagakerjaan');
+            Excel::import(new KetenagakerjaanImport, $file);
+            return redirect()->back();
         } catch (\Exception $e) {
-            Alert::error('Error', 'Failed to import data.');
             return redirect()->back();
         }
     }

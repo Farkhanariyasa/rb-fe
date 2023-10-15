@@ -31,4 +31,15 @@ class KetimpanganController extends Controller
             return redirect()->back();
         }
     }
+
+    // impor
+    public function import(Request $request) {
+        try {
+            $file = $request->file('file');
+            Excel::import(new KetimpanganImport, $file);
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+    }
 }
