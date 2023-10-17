@@ -29,6 +29,7 @@ class KetenagakerjaanImport implements ToModel, WithStartRow
             'lainnya' => $row[9],
             'tpak' => $row[10],
             'tpt' => $row[11],
+            'bukan_usia_kerja' => $row[12],
         ]);
     }
 
