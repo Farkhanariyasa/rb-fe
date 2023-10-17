@@ -55,12 +55,15 @@ Route::get('/admin/pdrb', [PdrbController::class, 'index']);
 Route::get('export/excel_pdrb', [PdrbController::class, 'export'])->name('export.excel_pdrb');
 Route::get('export/excel_pdrblapus', [PdrbController::class, 'export_pdrblapus'])->name('export.excel_pdrblapus');
 Route::post('/admin/pdrb/import_excel', [PdrbController::class, 'import'])->name('import.excel_pdrb');
+Route::post('/admin/pdrblapus/import_excel', [PdrbController::class, 'import_lapus'])->name('import.excel_pdrblapus');
+
 
 // penerimaan
 Route::get('/admin/penerimaan', [PenerimaanController::class, 'index']);
 Route::get('export/excel_penerimaan', [PenerimaanController::class, 'export'])->name('export.excel_penerimaan');
 Route::get('export/excel_sumberpenerimaan', [PenerimaanController::class, 'export_sumberpenerimaan'])->name('export.excel_sumberpenerimaan');
 Route::post('/admin/penerimaan/import_excel', [PenerimaanController::class, 'import'])->name('import.excel_penerimaan');
+Route::post('/admin/sumberpenerimaan/import_excel', [PenerimaanController::class, 'import_sumber'])->name('import.excel_sumberpenerimaan');
 
 //harga
 Route::get('/admin/harga', [HargaController::class, 'index']);
@@ -71,6 +74,41 @@ Route::post('/admin/harga/import_excel', [HargaController::class, 'import'])->na
 Route::get('/admin/ketimpangan', [KetimpanganController::class, 'index']);
 Route::get('export/excel_ketimpangan', [KetimpanganController::class, 'export'])->name('export.excel_ketimpangan');
 Route::post('/admin/ketimpangan/import_excel', [KetimpanganController::class, 'import'])->name('import.excel_ketimpangan');
+
+// inflasi
+Route::get('/admin/inflasi', [InflasiController::class, 'index']);
+Route::get('export/excel_inflasi', [InflasiController::class, 'export'])->name('export.excel_inflasi');
+Route::post('/admin/inflasi/import_excel', [InflasiController::class, 'import'])->name('import.excel_inflasi');
+
+// inflasi-bulanan
+Route::get('/admin/inflasi-bulanan', [InflasiController::class, 'index_bulanan']);
+Route::get('export/excel_inflasi_bulanan', [InflasiController::class, 'export_inflasibulanan'])->name('export.excel_inflasi_bulanan');
+Route::post('/admin/inflasi-bulanan/import_excel', [InflasiController::class, 'import_inflasibulanan'])->name('import.excel_inflasi_bulanan');
+
+// ihk
+Route::get('/admin/ihk', [InflasiController::class, 'index_ihk']);
+Route::get('export/excel_ihk', [InflasiController::class, 'export_ihk'])->name('export.excel_ihk');
+Route::post('/admin/ihk/import_excel', [InflasiController::class, 'import_ihk'])->name('import.excel_ihk');
+
+// tpak
+Route::get('/admin/tpak', [KetenagakerjaanController::class, 'index_tpak']);
+Route::get('export/excel_tpak', [KetenagakerjaanController::class, 'export_tpak'])->name('export.excel_tpak');
+Route::post('/admin/tpak/import_excel', [KetenagakerjaanController::class, 'import_tpak'])->name('import.excel_tpak');
+
+// ipmkab
+Route::get('/admin/ipmkab', [IpmController::class, 'index_ipmkab']);
+Route::get('export/excel_ipmkab', [IpmController::class, 'export_ipmkab'])->name('export.excel_ipmkab');
+Route::post('/admin/ipmkab/import_excel', [IpmController::class, 'import_ipmkab'])->name('import.excel_ipmkab');
+
+// ginikab
+Route::get('/admin/ginikab', [KetimpanganController::class, 'index_ginikab']);
+Route::get('export/excel_ginikab', [KetimpanganController::class, 'export_ginikab'])->name('export.excel_ginikab');
+Route::post('/admin/ginikab/import_excel', [KetimpanganController::class, 'import_ginikab'])->name('import.excel_ginikab');
+
+// pdrbkab
+Route::get('/admin/pdrbkab', [PdrbController::class, 'index_pdrbkab']);
+Route::get('export/excel_pdrbkab', [PdrbController::class, 'export_pdrbkab'])->name('export.excel_pdrbkab');
+Route::post('/admin/pdrbkab/import_excel', [PdrbController::class, 'import_pdrbkab'])->name('import.excel_pdrbkab');
 
 Route::get('/dashboard-ipm', function () {
     $data = [
@@ -130,6 +168,25 @@ Route::get('/dashboard-produksi', function () {
     return view('sosial/produksi', ['data' => $data]);
 });
 
+// dashboard-inflasi
+Route::get('/dashboard-inflasi', function () {
+    $data = [
+        "title" => "INFLASI",
+        "active" => "inflasi"
+    ];
+    return view('sosial/inflasi', ['data' => $data]);
+});
+
+// dashboard-pdrb
+Route::get('/dashboard-pdrb', function () {
+    $data = [
+        "title" => "PDRB",
+        "active" => "pdrb"
+    ];
+    return view('sosial/pdrb', ['data' => $data]);
+});
+
+
 Route::get('/tabulasi-pdrb', [PdrbController::class, 'index_tabel']);
 Route::get('/tabulasi-produksi', [HargaController::class, 'index_tabel']);
 Route::get('/tabulasi-penerimaan', [PenerimaanController::class, 'index_tabel']);
@@ -138,6 +195,8 @@ Route::get('/tabulasi-ipm', [IpmController::class, 'index_tabel']);
 Route::get('/tabulasi-kependudukan', [KependudukanController::class, 'index_tabel']);
 Route::get('/tabulasi-ketenagakerjaan', [KetenagakerjaanController::class, 'index_tabel']);
 Route::get('/tabulasi-ketimpangan', [KetimpanganController::class, 'index_tabel']);
+// inflasi
+Route::get('/tabulasi-inflasi', [InflasiController::class, 'index']);
 
 // Show the login form
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
