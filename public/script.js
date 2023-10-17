@@ -126,6 +126,17 @@ const closeArrowProduksi = window.document.querySelector(
 const submenuProduksi = window.document.querySelector(".submenu-list.produksi");
 const menuwideProduksi = window.document.querySelector(".menu-wide.produksi");
 
+// inflasi
+const openArrowInflasi = window.document.querySelector(
+    ".menu-wide.inflasi .fa-chevron-right"
+);
+const closeArrowInflasi = window.document.querySelector(
+    ".menu-wide.inflasi .fa-angle-down"
+);
+
+const submenuInflasi = window.document.querySelector(".submenu-list.inflasi");
+const menuwideInflasi = window.document.querySelector(".menu-wide.inflasi");
+
 menuwideIPM.addEventListener("click", () => {
     submenuIPM.classList.toggle("active");
     openArrowIPM.classList.toggle("gas");
@@ -160,6 +171,12 @@ menuwideProduksi.addEventListener("click", () => {
     submenuProduksi.classList.toggle("active");
     openArrowProduksi.classList.toggle("gas");
     closeArrowProduksi.classList.toggle("active");
+});
+
+menuwideInflasi.addEventListener("click", () => {
+    submenuInflasi.classList.toggle("active");
+    openArrowInflasi.classList.toggle("gas");
+    closeArrowInflasi.classList.toggle("active");
 });
 
 btnToggler.addEventListener("click", () => {
@@ -220,4 +237,11 @@ btnToggler.addEventListener("click", () => {
     }
     submenuProduksi.classList.remove("active");
     closeArrowProduksi.classList.remove("active");
+
+    if (submenuInflasi.classList.contains("active")) {
+    } else {
+        openArrowInflasi.classList.toggle("gas");
+    }
+    submenuInflasi.classList.remove("active");
+    closeArrowInflasi.classList.remove("active");
 });
