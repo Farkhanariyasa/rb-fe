@@ -6,7 +6,7 @@
     <div class="aksi">
         <a href="{{ route('export.excel_kemiskinan')}}" class="download-btn">Download</a>
         @if (session('user'))
-        <form action="{{ route('import.excel_harga') }}" method="POST" enctype="multipart/form-data" class="import-form">
+        <form action="{{ route('import.excel_kemiskinan') }}" method="POST" enctype="multipart/form-data" class="import-form">
             @csrf
             <input type="file" name="file">
             <button type="submit" class="import-btn">Import Update</button>

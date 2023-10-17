@@ -1,14 +1,14 @@
 @extends('./layouts/main')
 @section ('content')
 <div>
-    <div class='tableauPlaceholder' id='viz1697160533103' style='position: relative'><noscript><a href='#'><img alt='Dash. Angka Produksi ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ek&#47;EkonomiIndikatorProduksiPadi&#47;Dash_AngkaProduksi&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+    <div class='tableauPlaceholder' id='viz1697516432035' style='position: relative'><noscript><a href='#'><img alt='Dash. Angka Penerimaan Daerah ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ek&#47;EkonomiIndikatorPenerimaanDaerah2&#47;Dash_AngkaPenerimaanDaerah&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
             <param name='embed_code_version' value='3' />
             <param name='site_root' value='' />
-            <param name='name' value='EkonomiIndikatorProduksiPadi&#47;Dash_AngkaProduksi' />
+            <param name='name' value='EkonomiIndikatorPenerimaanDaerah2&#47;Dash_AngkaPenerimaanDaerah' />
             <param name='tabs' value='no' />
             <param name='toolbar' value='yes' />
-            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ek&#47;EkonomiIndikatorProduksiPadi&#47;Dash_AngkaProduksi&#47;1.png' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ek&#47;EkonomiIndikatorPenerimaanDaerah2&#47;Dash_AngkaPenerimaanDaerah&#47;1.png' />
             <param name='animate_transition' value='yes' />
             <param name='display_static_image' value='yes' />
             <param name='display_spinner' value='yes' />
@@ -18,21 +18,17 @@
             <param name='filter' value='publish=yes' />
         </object></div>
     <script type='text/javascript'>
-        var divElement = document.getElementById('viz1697160533103');
+        var divElement = document.getElementById('viz1697516432035');
         var vizElement = divElement.getElementsByTagName('object')[0];
         if (divElement.offsetWidth > 800) {
-            vizElement.style.width = '1500px';
-            vizElement.style.minHeight = '827px';
-            vizElement.style.maxHeight = '927px';
+            vizElement.style.width = '100%';
             vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
         } else if (divElement.offsetWidth > 500) {
-            vizElement.style.width = '1500px';
-            vizElement.style.minHeight = '827px';
-            vizElement.style.maxHeight = '927px';
+            vizElement.style.width = '100%';
             vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
         } else {
             vizElement.style.width = '100%';
-            vizElement.style.height = '1427px';
+            vizElement.style.height = '1527px';
         }
         var scriptElement = document.createElement('script');
         scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';

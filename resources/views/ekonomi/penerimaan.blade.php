@@ -5,7 +5,7 @@
     <div class="aksi">
         <a href="{{ route('export.excel_penerimaan')}}" class="download-btn">Download</a>
         @if (session('user'))
-        <form action="{{ route('import.excel_harga') }}" method="POST" enctype="multipart/form-data" class="import-form">
+        <form action="{{ route('import.excel_penerimaan') }}" method="POST" enctype="multipart/form-data" class="import-form">
             @csrf
             <input type="file" name="file">
             <button type="submit" class="import-btn">Import Update</button>
@@ -37,6 +37,13 @@
     <h1 class="judul">Sumber Penerimaan</h1>
     <div class="aksi">
         <a href="{{ route('export.excel_sumberpenerimaan')}}" class="download-btn">Download</a>
+        @if (session('user'))
+        <form action="{{ route('import.excel_sumberpenerimaan') }}" method="POST" enctype="multipart/form-data" class="import-form">
+            @csrf
+            <input type="file" name="file">
+            <button type="submit" class="import-btn">Import Update</button>
+        </form>
+        @endif
     </div>
 
     <table class="tabel" id="myTable">
