@@ -30,6 +30,7 @@ class ExportKetenagakerjaan implements FromCollection, WithHeadings
             'Lainnya',
             'Tingkat Partisipasi Angkatan Kerja',
             'Tingkat Pengangguran Terbuka',
+            'Bukan Usia Kerja',
         ];
     }
 }
