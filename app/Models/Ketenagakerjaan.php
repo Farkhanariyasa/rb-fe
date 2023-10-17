@@ -23,5 +23,6 @@ class Ketenagakerjaan extends Model
         'lainnya',
         'tpak',
         'tpt',
+        'bukan_usia_kerja',
     ];
 }
