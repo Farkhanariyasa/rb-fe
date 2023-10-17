@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
-
+use App\Exports\ExportPdrbKab;
+use App\Imports\PdrbKabImport;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PdrbImport;
@@ -30,11 +31,12 @@ class PdrbController extends Controller
     {
         $pdrb = DB::table('datapdrb')->get();
         $pdrblapus = DB::table('datapdrblapus')->get();
+        $pdrbkabupaten = DB::table('pdrbmap')->get();
         $data = [
             "title" => "PDRB",
             "active" => "pdrb"
         ];
-        return view('ekonomi.pdrb', ['data' => $data, 'pdrb' => $pdrb, 'pdrblapus' => $pdrblapus]);
+        return view('ekonomi.pdrb', ['data' => $data, 'pdrb' => $pdrb, 'pdrblapus' => $pdrblapus, 'pdrbkabupaten' => $pdrbkabupaten]);
     }
 
     public function export()
@@ -72,12 +74,34 @@ class PdrbController extends Controller
     // import_lapus
     public function import_lapus(Request $request)
     {
-        // try {
+        try {
             $file = $request->file('file');
             Excel::import(new PdrblapusImport, $file);
-        //     return redirect()->back();
-        // } catch (\Exception $e) {
-        //     return redirect()->back();
-        // }
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+    }
+
+    // ex im pdrbkab
+    public function export_pdrbkab()
+    {
+        try {
+            return Excel::download(new ExportPdrbKab(), 'pdrb_kabupaten.xlsx');
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+    }
+
+    public function import_pdrbkab(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            DB::table('pdrbmap')->truncate();
+            Excel::import(new PdrbKabImport, $file);
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
     }
 }

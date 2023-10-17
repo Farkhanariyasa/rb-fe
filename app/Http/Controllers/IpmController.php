@@ -8,6 +8,8 @@ use App\Exports\ExportIpm;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\IpmImport;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Exports\ExportIpmKab;
+use App\Imports\IpmKabImport;
 
 class IpmController extends Controller
 {
@@ -29,7 +31,9 @@ class IpmController extends Controller
             "title" => "IPM",
             "active" => "ipm"
         ];
-        return view('sosial.table.ipm', ['data' => $data, 'ipm' => $ipm]);
+
+        $data_map = DB::table('ipmmap')->get();
+        return view('sosial.table.ipm', ['data' => $data, 'ipm' => $ipm, 'ipm_map' => $data_map]);
     }
 
     public function export()
@@ -53,6 +57,30 @@ class IpmController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             alert()->success('Success', 'Data imported successfully.');
+            return redirect()->back();
+        }
+    }
+
+    // ex im ipmkab
+    public function export_ipmkab()
+    {
+        try {
+            return Excel::download(new ExportIpmKab(), 'ipm_kabupaten.xlsx');
+        } catch (\Exception $e) {
+            return redirect()->back();
+        } // Convert array to collection and then download
+    }
+
+    public function import_ipmkab(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            // $nama_file = rand() . $file->getClientOriginalName();
+            // $file->move('dataipmkab', $nama_file);
+            DB::table('ipmmap')->truncate();
+            Excel::import(new IpmKabImport, $file);
+            return redirect()->back();
+        } catch (\Exception $e) {
             return redirect()->back();
         }
     }
